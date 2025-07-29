@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "harryadf18"
+		},
+		"ls_AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"ls_blb_output_connectionString": {
+			"value": ""
+		},
+		"ls_server_password": {
+			"value": ""
+		},
+		"ls_AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "harryserver.database.windows.net"
+		},
+		"ls_AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "harry_database"
+		},
+		"ls_AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "tharun1"
+		},
+		"ls_datalake_properties_typeProperties_url": {
+			"value": "https://harrystracc.dfs.core.windows.net"
+		},
+		"ls_keyvault_properties_typeProperties_baseUrl": {
+			"value": "https://tharunvault.vault.azure.net/"
+		},
+		"ls_server_properties_typeProperties_server": {
+			"value": "harryserver.database.windows.net"
+		},
+		"ls_server_properties_typeProperties_database": {
+			"value": "harry_database"
+		},
+		"ls_server_properties_typeProperties_userName": {
+			"value": "tharun1"
+		}
+	}
+}
