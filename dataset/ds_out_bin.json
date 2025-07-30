@@ -1,0 +1,27 @@
+{
+	"name": "ds_out_bin",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blb_output",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": "bin",
+				"container": "output2"
+			}
+		}
+	}
+}
