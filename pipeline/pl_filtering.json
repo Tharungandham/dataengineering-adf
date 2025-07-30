@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "DelimitedText1",
+						"referenceName": "ds_combined",
 						"type": "DatasetReference"
 					},
 					"timeout": "0.12:00:00",
@@ -37,18 +37,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "DelimitedText1",
+						"referenceName": "ds_combined",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
 						"childItems",
 						"exists",
 						"itemName",
-						"lastModified",
-						"itemType"
+						"itemType",
+						"lastModified"
 					],
 					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
+						"type": "AzureBlobStorageReadSettings",
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
