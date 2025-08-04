@@ -1,0 +1,16 @@
+{
+	"name": "ds_sql_inctrg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "inc_target"
+		}
+	}
+}

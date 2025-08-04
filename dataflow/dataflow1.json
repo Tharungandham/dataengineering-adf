@@ -1,0 +1,91 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_inc_id",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_sql_inctrg",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     p_lastmodified as string",
+				"}",
+				"source(output(",
+				"          {Product ID} as string,",
+				"          Category as string,",
+				"          {Sub-Category} as string,",
+				"          {Product Name} as string,",
+				"          Sales as string,",
+				"          Quantity as double,",
+				"          {Discount %} as short,",
+				"          Profit as double,",
+				"          {Shipment Cost} as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(lastModified = toTimestamp($p_lastmodified)) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          Product_ID = {Product ID},",
+				"          Category,",
+				"          Sub_Category = {Sub-Category},",
+				"          ProductName = {Product Name},",
+				"          Sales,",
+				"          Quantity,",
+				"          Discount = {Discount %},",
+				"          Profit,",
+				"          Shipment_Cost = {Shipment Cost},",
+				"          lastModified",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          Product_ID,",
+				"          Category,",
+				"          Sub_Category,",
+				"          ProductName,",
+				"          Sales,",
+				"          Quantity,",
+				"          Discount,",
+				"          Profit,",
+				"          Shipment_Cost,",
+				"          lastModified",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}
